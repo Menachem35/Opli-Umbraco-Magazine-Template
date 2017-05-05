@@ -1,0 +1,27 @@
+@inherits Umbraco.Web.Macros.PartialViewMacroPage
+
+@{
+  // Get the image dimensions
+	if(CurrentPage.HasValue("articleImg")){		 
+		string w = (string)Umbraco.Media(CurrentPage.articleImg).umbracoWidth;	
+		string h = (string)Umbraco.Media(CurrentPage.articleImg).umbracoHeight;
+		
+		int imgWidth = w.AsInt();
+		
+    // If the image more than 1000 pixels width, then it will catch the whole screen
+		if (imgWidth > 1000) {
+			<div class="col-xl-12" class="news-page-img-container">
+				<img src="@Umbraco.Media(CurrentPage.articleImg).Url" alt="@CurrentPage.photoAlt" class="news-img" />
+			</div>	
+		}
+		else {
+				<div class="col-xl-2 col-lg-2 col-md-2">
+				</div>
+				<div class="col-xl-8 col-lg-8 col-md-8">
+					<img src="@Umbraco.Media(CurrentPage.articleImg).Url" alt="@CurrentPage.photoAlt" class="img-fluid" />
+				</div>
+				<div class="col-xl-2 col-lg-2 col-md-2">
+				</div> 
+			}		
+	} 				
+}
