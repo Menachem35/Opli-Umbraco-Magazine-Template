@@ -1,0 +1,109 @@
+@inherits Umbraco.Web.Macros.PartialViewMacroPage
+
+@{
+	var Photography_node = Umbraco.Content(1170);	 
+	
+	var Photography_pagesToList = @Photography_node.Children.Where("Visible");
+	Photography_pagesToList = Photography_node.DescendantsOrSelf().Where("NodeTypeAlias == @0", "NewsPage");
+			
+	<!-- ****** Photography ****** -->
+	<div class="row">
+		<div class="col-12">
+			<h2><a href="/photography.aspx">Photography</a></h2>
+		</div>
+	</div>
+			
+	<div class="row">
+		<!-- Photography left box -->
+		<div class="col-xl-7 col-lg-7 col-md-12 col-sm-12 col-xs-12 photography-container">
+			<div class="row">
+				<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 photography-left">
+					<figure>
+						@if (Photography_pagesToList.Last().HasValue("articleImg")) 
+						{
+							<img src="@Umbraco.Media(Photography_pagesToList.Last().articleImg).Url" class="img-fluid" alt="@Photography_pagesToList.Last().photoAlt" />	
+						}		
+						<figcaption>
+							<a href="@Photography_pagesToList.Last().Url">
+								<h3 class="photography-news">
+									@Photography_pagesToList.Last().title
+								</h3>
+							</a>
+						</figcaption>
+					</figure>
+							
+				</div>
+						
+				<div class="col-xl-8 col-lg-8 col-md-8 col-sm-6 col-xs-6 photography-left-1">
+					<figure>
+						@if (Photography_pagesToList.Last().Previous().HasValue("articleImg")) 	
+						{
+							<img src="@Umbraco.Media(Photography_pagesToList.Last().Previous().articleImg).Url" class="img-fluid" alt="@Photography_pagesToList.Last().Previous().photoAlt" />
+						}
+						<figcaption>
+							<a href="@Photography_pagesToList.Last().Previous().Url">
+								<h3 class="photography-news">
+									@Umbraco.Truncate(@Photography_pagesToList.Last().Previous().title, 85, true)												
+								</h3>
+							</a>
+						</figcaption>
+					</figure>
+							
+				</div>
+						
+				<div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-6 photography-left-1">
+					<div class="photography-left-2">
+						Advertising / Follow us on facebook / twitter
+					</div>
+				</div>											
+			</div>				
+		</div>
+				
+		<!-- Photography right box -->
+		<div class="col-xl-5 col-lg-5 col-md-12 col-sm-12 col-xs-12 photography-container-right">
+			<div class="row">
+				<div class="col-xl-12 col-lg-12 col-md-4 col-sm-4 col-xs-12">
+					<div class="row">
+						<!-- ************** -->
+						@foreach (var Photography_newsItem in Photography_pagesToList.OrderBy("createDate desc").Skip(2).Take(2))
+						{
+							<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-6 photography-right-1">																							
+								<figure>
+									<img src="@Umbraco.Media(Photography_newsItem.articleImg).Url" class="img-fluid news-img" alt="@Photography_newsItem.photoAlt" />
+									
+									<figcaption>
+										<a href="@Photography_newsItem.Url">
+												<h3 class="photography-news-right">													
+													@Umbraco.Truncate(@Photography_newsItem.title, 100, true)
+												</h3>
+											</a>
+									</figcaption>
+								</figure> 											
+							</div>
+						}									
+						<!-- ************** -->
+								
+					</div><!-- row-->
+				</div><!-- div upper col -->
+						
+				<div class="col-xl-12 col-lg-12 col-md-8 col-sm-8 col-xs-12 photography-right-2">
+					<figure>
+						@if (Photography_pagesToList.Last().Previous(4).HasValue("articleImg")) 	
+						{
+							<img src="@Umbraco.Media(Photography_pagesToList.Last().Previous(4).articleImg).Url" class="img-fluid news-img" alt="@Photography_pagesToList.Last().Previous(4).photoAlt" />
+						}			
+						<figcaption>
+							<a href="@Photography_pagesToList.Last().Previous(4).Url">
+								<h3 class="photography-news-right-1">
+									@Photography_pagesToList.Last().Previous(4).title
+								</h3>
+							</a>
+						</figcaption>
+					</figure> 
+				</div><!-- div bottom col -->
+						
+			</div><!-- row -->									
+		</div><!-- right box div -->
+	</div>
+	<!-- ***** End Photography ***** -->							
+}
