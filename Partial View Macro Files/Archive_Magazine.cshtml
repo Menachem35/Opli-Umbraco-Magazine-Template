@@ -1,0 +1,712 @@
+@inherits Umbraco.Web.Macros.PartialViewMacroPage
+
+@{
+		
+    string OpliCategories = CurrentPage.opliMagazineCategory; //get the checked item from the checkbox list
+	
+	string archiveUrl = "";
+	string ArchivePageTitle ="";
+	 	
+	var MagazineID=1111; // initial the variable - Folder of the archive articles
+	
+	 
+	switch (OpliCategories)
+	{
+		case "Photonics": 
+		{
+    		MagazineID = 1061;
+			archiveUrl = "http://www.opli.net/magazine/main.aspx";
+			ArchivePageTitle = "Photonics & Physics";
+		}
+			break;			
+		
+		case "Lasers":
+		{
+			MagazineID = 1061;
+			archiveUrl = "http://www.opli.net/magazine/lasers_magazine.aspx";
+			ArchivePageTitle = "Lasers";
+		}
+			break;
+		
+		case "surveillance":
+		{
+			MagazineID = 1061;
+			archiveUrl = "http://www.opli.net/magazine/observation_magazine.aspx";
+			ArchivePageTitle = "Observation & surveillance";
+		}
+			break;
+		
+		case "Mechanics":
+		{
+			archiveUrl = "http://www.opli.net/magazine/medical_eng_magazine.aspx";
+			ArchivePageTitle = "Opto Mechanics";
+			MagazineID = 1061;
+		}
+			break;
+		
+		case "Fibers":
+		{
+			MagazineID = 1120;
+			archiveUrl = "http://www.opli.net/magazine/fibers_magazine.aspx";
+			ArchivePageTitle = "Optical Networks & Fibers";
+		}
+			break;
+		
+		case "Medical":
+			MagazineID = 1240;
+		    archiveUrl = "http://www.opli.net/magazine/medical_eng_magazine.aspx";
+			ArchivePageTitle = "Medical Engineering";
+			break;
+		
+		case "MachineVision":
+		{
+			MagazineID = 1064;
+			archiveUrl = "http://www.opli.net/magazine/imaging_magazine.aspx";
+			ArchivePageTitle = "Imaging & Machine-Vision";
+		}
+			break;
+		
+		case "Astronomy":
+		{
+			MagazineID = 1226;
+			archiveUrl = "http://www.opli.net/magazine/space_magazine.aspx";
+			ArchivePageTitle = "Astronomy & Space";
+		}
+		break;
+		
+		case "LEDs":
+		{
+			MagazineID = 1155;
+			archiveUrl = "http://www.opli.net/magazine/light_magazine.aspx";
+			ArchivePageTitle = "Illumination & LED's";
+		}
+		break;
+		
+		case "Electronics":
+		{
+			MagazineID = 1475;
+			archiveUrl = "http://www.opli.net/magazine/tech_magazine.aspx";
+			ArchivePageTitle = "Electronics, Aviation, RF";
+		}
+		break;
+		
+		case "Research":
+		{
+			MagazineID = 1475;
+			archiveUrl = "http://www.opli.net/magazine/tech_research_magazine.aspx";
+			ArchivePageTitle = "Tech & Electronics: Research";
+		}
+		break;
+		
+		case "Aviation":
+		{
+			MagazineID = 1475;
+			archiveUrl = "http://www.opli.net/magazine/tech_aviation_magazine.aspx";
+			ArchivePageTitle = "Tech & Electronics: Aviation";
+		}
+		break;
+		
+		case "Displays":
+		{
+			MagazineID = 1475;
+			archiveUrl = "http://www.opli.net/magazine/tech_displays_magazine.aspx";
+			ArchivePageTitle = "Tech & Electronics: Displays";
+		}
+		break;
+		
+		case "Energy":
+		{
+			MagazineID = 1475;
+			archiveUrl = "http://www.opli.net/magazine/tech_energy_magazine.aspx";
+			ArchivePageTitle = "Tech & Electronics: Alternative Energy";
+		}
+		break;
+		
+		case "Solar":
+		{
+			MagazineID = 1306;
+			archiveUrl = "http://www.opli.net/magazine/solar_magazine.aspx";
+			ArchivePageTitle = "Solar Energy";
+		}
+		break;
+		
+		case "Photography":
+		{
+			MagazineID = 1170;
+			archiveUrl = "http://www.opli.net/magazine/photograph_magazine.aspx";
+			ArchivePageTitle = "Photography";
+		}
+		break;
+		
+		case "Gadgets":
+		{
+			MagazineID = 1137;
+			archiveUrl = "http://www.opli.net/magazine/gadget_magazine.aspx";
+			ArchivePageTitle = "Gadgets";
+		}
+		break;
+		
+		case "Lifestyle":
+		{
+			MagazineID = 1414;
+			archiveUrl = "http://www.opli.net/magazine/lifestyle_magazine.aspx";
+			ArchivePageTitle = "Lyfestyle: Pens, Watches, Luxury cars";
+		}
+		break;
+	}
+
+	
+	
+	var magazine_node = Umbraco.Content(MagazineID); //get the right node according to the selected category
+     
+	var magazine_pagesToList = magazine_node.Children.Where("Visible");	
+	
+    
+	magazine_pagesToList = magazine_node.DescendantsOrSelf().Where("NodeTypeAlias == @0", "NewsPage");
+	
+	
+	// ************* Mixed Nodes *****************
+	if (OpliCategories == "Photonics")
+	{
+		magazine_pagesToList = magazine_node.DescendantsOrSelf().Where("OpliCategory == @0", "Photonics");
+	}
+	
+	if (OpliCategories == "Lasers")
+	{
+		magazine_pagesToList = magazine_node.DescendantsOrSelf().Where("opliCategory == @0", "Lasers");
+	}
+	
+	if (OpliCategories == "surveillance")
+	{
+		magazine_pagesToList = magazine_node.DescendantsOrSelf().Where("opliCategory == @0", "surveillance");
+	}
+	
+	if (OpliCategories == "Mechanics")
+	{
+		magazine_pagesToList = magazine_node.DescendantsOrSelf().Where("opliCategory == @0", "Mechanics");
+	}
+	
+	if (OpliCategories == "Electronics")
+	{
+		magazine_pagesToList = magazine_node.DescendantsOrSelf().Where("opliCategory == @0", "Electronics");
+	}
+	
+	if (OpliCategories == "Research")
+	{
+		magazine_pagesToList = magazine_node.DescendantsOrSelf().Where("opliCategory == @0", "Research");
+	}
+	
+	if (OpliCategories == "Aviation")
+	{
+		magazine_pagesToList = magazine_node.DescendantsOrSelf().Where("opliCategory == @0", "Aviation");
+	}
+	
+	if (OpliCategories == "Displays")
+	{
+		magazine_pagesToList = magazine_node.DescendantsOrSelf().Where("opliCategory == @0", "Displays");
+	}
+	
+	if (OpliCategories == "Energy")
+	{
+		magazine_pagesToList = magazine_node.DescendantsOrSelf().Where("opliCategory == @0", "Energy");
+	}
+	
+	// ************************************************
+	
+	
+	
+    var itemsPerPage = 20;
+  
+    //Count number of items from magazine_pagesToList variable
+    var numberOfItems = magazine_pagesToList.Count();
+    
+    //Set the currentPage to 1
+    int currentPage = 1; 	
+
+    /*
+        If we cannot parse a number from requesting the querystring param 'page' then set to 1,
+        otherwise set the querystring value to our currentPage variable
+    */
+    if (!int.TryParse(HttpContext.Current.Request.QueryString["Page"], out currentPage))
+    {
+        //No querystring found or not a number, so set currentPage to 1
+        currentPage = 1;
+    }
+    
+    //Subtract one from the currentPage variable (to use a zero based index, first page = 0)
+    currentPage--;
+
+    //Number of Pages (Maths time!)
+    /*
+        Divide the numberOfItems by itemsPerPage and then round the number up to 
+        next whole number and add one to the result (eg: 5.1 = 6 + 1 = 7) 
+    */
+    var numberOfPages = Math.Ceiling((decimal)numberOfItems / (decimal)itemsPerPage);
+    
+    <!-- ************************ Magazine Headlines ************************ -->
+	
+	
+	if (currentPage == 0 && OpliCategories != "Gadgets")
+	{
+		var get_HeadLinesArticles = Umbraco.Content(1561);
+	
+		string PageCategory = CurrentPage.opliMagazineCategory;
+				
+
+		<!-- ****************************************************** -->
+			
+		var MagHL_ID_1 = 1111; //Get the ID of the selected page
+		var MagHL_ID_2 = 1111;
+		var MagHL_ID_3 = 1111;
+		var MagHL_ID_4 = 1111;
+		
+		switch (PageCategory)
+		{		
+			case "Photonics": 
+			{
+				MagHL_ID_1 = get_HeadLinesArticles.magazineHeadlinePhotonics1;
+				MagHL_ID_2 = get_HeadLinesArticles.magazineHeadlinePhotonics2;
+				MagHL_ID_3 = get_HeadLinesArticles.magazineHeadlinePhotonics3;
+				MagHL_ID_4 = get_HeadLinesArticles.magazineHeadlinePhotonics4;
+			}
+			break;
+			
+			
+			case "Lasers": 
+			{
+				MagHL_ID_1 = get_HeadLinesArticles.magazineHeadlineLasers1;
+				MagHL_ID_2 = get_HeadLinesArticles.magazineHeadlineLasers2;
+				MagHL_ID_3 = get_HeadLinesArticles.magazineHeadlineLasers3;
+				MagHL_ID_4 = get_HeadLinesArticles.magazineHeadlineLasers4;
+			}
+			break;
+			
+			
+			case "MachineVision": 
+			{
+				MagHL_ID_1 = get_HeadLinesArticles.magazineHeadlineVision1;
+				MagHL_ID_2 = get_HeadLinesArticles.magazineHeadlineVision2;
+				MagHL_ID_3 = get_HeadLinesArticles.magazineHeadlineVision3;
+				MagHL_ID_4 = get_HeadLinesArticles.magazineHeadlineVision4;				
+			}
+			break;
+			
+			case "LEDs": 
+			{
+				MagHL_ID_1 = get_HeadLinesArticles.magazineHeadlineLEDs1;
+				MagHL_ID_2 = get_HeadLinesArticles.magazineHeadlineLEDs2;
+				MagHL_ID_3 = get_HeadLinesArticles.magazineHeadlineLEDs3;
+				MagHL_ID_4 = get_HeadLinesArticles.magazineHeadlineLEDs4;
+			}
+			break;
+			
+			case "Fibers": 
+			{
+				MagHL_ID_1 = get_HeadLinesArticles.magazineHeadlineFibers1;
+				MagHL_ID_2 = get_HeadLinesArticles.magazineHeadlineFibers2;
+				MagHL_ID_3 = get_HeadLinesArticles.magazineHeadlineFibers3;
+				MagHL_ID_4 = get_HeadLinesArticles.magazineHeadlineFibers4;
+			}
+			break;
+			
+			case "surveillance": 
+			{
+				MagHL_ID_1 = get_HeadLinesArticles.magazineHeadlineObservation1;
+				MagHL_ID_2 = get_HeadLinesArticles.magazineHeadlineObservation2;
+				MagHL_ID_3 = get_HeadLinesArticles.magazineHeadlineObservation3;
+				MagHL_ID_4 = get_HeadLinesArticles.magazineHeadlineObservation4;
+			}
+			break;
+			
+			case "Mechanics": 
+			{
+				MagHL_ID_1 = get_HeadLinesArticles.magazineHeadlineMechanics1;
+				MagHL_ID_2 = get_HeadLinesArticles.magazineHeadlineMechanics2;
+				MagHL_ID_3 = get_HeadLinesArticles.magazineHeadlineMechanics3;
+				MagHL_ID_4 = get_HeadLinesArticles.magazineHeadlineMechanics4;			
+			}
+			break;
+			
+			case "Astronomy": 
+			{
+				MagHL_ID_1 = get_HeadLinesArticles.magazineHeadlineAstronomy1;
+				MagHL_ID_2 = get_HeadLinesArticles.magazineHeadlineAstronomy2;
+				MagHL_ID_3 = get_HeadLinesArticles.magazineHeadlineAstronomy3;
+				MagHL_ID_4 = get_HeadLinesArticles.magazineHeadlineAstronomy4;
+			}
+			break;
+			
+			case "Medical": 
+			{
+				MagHL_ID_1 = get_HeadLinesArticles.magazineHeadlineMedical1;
+				MagHL_ID_2 = get_HeadLinesArticles.magazineHeadlineMedical2;
+				MagHL_ID_3 = get_HeadLinesArticles.magazineHeadlineMedical3;
+				MagHL_ID_4 = get_HeadLinesArticles.magazineHeadlineMedical4;
+			}
+			break;
+			
+			case "Electronics": 
+			{
+				MagHL_ID_1 = get_HeadLinesArticles.magazineHeadlineElectronics1;
+				MagHL_ID_2 = get_HeadLinesArticles.magazineHeadlineElectronics2;
+				MagHL_ID_3 = get_HeadLinesArticles.magazineHeadlineElectronics3;
+				MagHL_ID_4 = get_HeadLinesArticles.magazineHeadlineElectronics4;
+			}
+			break;
+			
+			case "Research": 
+			{
+				MagHL_ID_1 = get_HeadLinesArticles.magazineHeadlineTechResearch1;
+				MagHL_ID_2 = get_HeadLinesArticles.magazineHeadlineTechResearch2;
+				MagHL_ID_3 = get_HeadLinesArticles.magazineHeadlineTechResearch3;
+				MagHL_ID_4 = get_HeadLinesArticles.magazineHeadlineTechResearch4;
+			}
+			break;
+			
+			case "Aviation": 
+			{
+				MagHL_ID_1 = get_HeadLinesArticles.magazineHeadlineTechAviation1;
+				MagHL_ID_2 = get_HeadLinesArticles.magazineHeadlineTechAviation2;
+				MagHL_ID_3 = get_HeadLinesArticles.magazineHeadlineTechAviation3;
+				MagHL_ID_4 = get_HeadLinesArticles.magazineHeadlineTechAviation4;
+			}
+			break;
+			
+			case "Displays": 
+			{
+				MagHL_ID_1 = get_HeadLinesArticles.magazineHeadlineTechDisplays1;
+				MagHL_ID_2 = get_HeadLinesArticles.magazineHeadlineTechDisplays2;
+				MagHL_ID_3 = get_HeadLinesArticles.magazineHeadlineTechDisplays3;
+				MagHL_ID_4 = get_HeadLinesArticles.magazineHeadlineTechDisplays4;
+			}
+			break;
+						
+			case "Energy": 
+			{
+				MagHL_ID_1 = get_HeadLinesArticles.magazineHeadlineTechEnergy1;
+				MagHL_ID_2 = get_HeadLinesArticles.magazineHeadlineTechEnergy2;
+				MagHL_ID_3 = get_HeadLinesArticles.magazineHeadlineTechEnergy3;
+				MagHL_ID_4 = get_HeadLinesArticles.magazineHeadlineTechEnergy4;
+			}
+			break;
+			
+			case "Solar": 
+			{
+				MagHL_ID_1 = get_HeadLinesArticles.magazineHeadlineSolar1;
+				MagHL_ID_2 = get_HeadLinesArticles.magazineHeadlineSolar2;
+				MagHL_ID_3 = get_HeadLinesArticles.magazineHeadlineSolar3;
+				MagHL_ID_4 = get_HeadLinesArticles.magazineHeadlineSolar4;
+			}
+			break;
+			
+			case "Photography": 
+			{
+				MagHL_ID_1 = get_HeadLinesArticles.magazineHeadlinePhotography1;
+				MagHL_ID_2 = get_HeadLinesArticles.magazineHeadlinePhotography2;
+				MagHL_ID_3 = get_HeadLinesArticles.magazineHeadlinePhotography3;
+				MagHL_ID_4 = get_HeadLinesArticles.magazineHeadlinePhotography4;
+			}
+			break;
+			
+			case "Lifestyle": 
+			{
+				MagHL_ID_1 = get_HeadLinesArticles.magazineHeadlineLifestyle1;
+				MagHL_ID_2 = get_HeadLinesArticles.magazineHeadlineLifestyle2;
+				MagHL_ID_3 = get_HeadLinesArticles.magazineHeadlineLifestyle3;
+				MagHL_ID_4 = get_HeadLinesArticles.magazineHeadlineLifestyle4;
+			}
+			break;
+			
+		}						
+
+		var MagHL_Article_1 = Umbraco.Content(MagHL_ID_1);
+		var MagHL_Article_2 = Umbraco.Content(MagHL_ID_2);
+		var MagHL_Article_3 = Umbraco.Content(MagHL_ID_3);
+		var MagHL_Article_4 = Umbraco.Content(MagHL_ID_4);
+		
+		<div class="row">
+			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+				<div class="category-title-container">
+					<h2 class="category-title-item">@ArchivePageTitle</h2>
+					<div class="stripe-line"></div>					 
+				</div>					
+			</div>
+		</div>
+		
+		<!-- headlines -->				
+		<div class="row">
+			<div class="col-xl-12 main-news-item-archive">
+				<figure>
+					<img src="@Umbraco.Media(MagHL_Article_1.articleImg).Url" class="img-fluid" alt="@MagHL_Article_1.photoAlt" />
+					<figcaption>
+						<a href="@MagHL_Article_1.Url">
+							<h3 class="MainNewsTitle">@MagHL_Article_1.title</h3>
+						</a>
+					</figcaption>
+				</figure>
+			</div>
+		</div>																			 			   
+    	<!-- ************************************** -->
+		
+		<div class="row">
+			<div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12 headlines-item">
+				<figure>
+					<img src="@Umbraco.Media(MagHL_Article_2.articleImg).Url" class="img-fluid archive-img" alt="@MagHL_Article_2.photoAlt" />
+					<figcaption>								    					
+						<a href="@MagHL_Article_2.Url">
+							<h3>
+								@MagHL_Article_2.title
+							</h3>
+						</a>
+					</figcaption>
+				</figure>
+			</div>
+				
+			<div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12 headlines-item">
+				<figure>
+					<img src="@Umbraco.Media(MagHL_Article_3.articleImg).Url" class="img-fluid archive-img" alt="@MagHL_Article_3.photoAlt" />
+					<figcaption>								    					
+						<a href="@MagHL_Article_3.Url">
+							<h3>
+								@MagHL_Article_3.title
+							</h3>
+						</a>
+					</figcaption>
+				</figure>
+			</div>
+				
+			<div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12 headlines-item" id="headline-right-item">
+				<figure>
+					<img src="@Umbraco.Media(MagHL_Article_4.articleImg).Url" class="img-fluid archive-img" alt="@MagHL_Article_4.photoAlt" />
+					<figcaption>								    					
+						<a href="@MagHL_Article_4.Url">
+							<h3>
+								@MagHL_Article_4.title
+							</h3>
+						</a>
+					</figcaption>
+				</figure>
+			</div>
+		</div>
+		<!-- ********* -->
+	}       
+		
+    <!-- ********************** End Magazine Headlines ************************ -->
+						
+    <!-- ******************************* -->
+	<div class="row">				
+		<div class="col-xl-12">
+    		@foreach (var magazine_newsItem in magazine_pagesToList.OrderBy("createDate desc").Skip(currentPage*itemsPerPage).Take(itemsPerPage))
+    		{
+			    	
+				string MagazineCategory = magazine_newsItem.opliCategory;
+		
+				<!-- When multiple categories under one section, like Photonics which includes photonics, lasers, etc -->		
+				if (OpliCategories == "Photonics" || OpliCategories == "Lasers" || OpliCategories == "Mechanics" || OpliCategories == "surveillance"
+		     	    || OpliCategories == "Electronics" || OpliCategories == "Research" || OpliCategories == "Aviation" 
+			 		|| OpliCategories == "Displays" || OpliCategories == "Energy")
+					{		
+										
+						if (OpliCategories == MagazineCategory) 
+						{
+				 			<div class="row magazine-news-item">						
+								<div class="col-xl-3 col-lg-3 col-md-2 hidden-sm-down">
+									SHARE
+									<br />
+									<div class="fb-like" data-send="false" data-width="300" data-show-faces="true"></div>
+            						<br />
+    								<g:plusone></g:plusone>
+                					<br />
+    								<script src="//platform.linkedin.com/in.js" type="text/javascript"></script>
+    								<script type="IN/Share" data-counter="right"></script>
+									<br />
+								    <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+    
+								</div>
+				
+								<div class="col-xl-5 col-lg-5 col-md-5 col-sm-6 col-xs-12">
+									<a href="@magazine_newsItem.Url"><h3>@magazine_newsItem.title</h3></a>
+									<h4>@magazine_newsItem.subTitle</h4>
+							
+									<p>
+										@Umbraco.Truncate(@magazine_newsItem.metaDescription, 120, true)
+									</p>
+									<a href="@magazine_newsItem.Url">Read >></a> 
+								</div>
+				
+								<div class="col-xl-4 col-lg-4 col-md-5 col-sm-6 col-xs-12">
+									<figure>
+										@if (magazine_newsItem.HasValue("articleImg"))
+										{
+											<a href="@magazine_newsItem.Url">	
+												<img src="@Umbraco.Media(magazine_newsItem.articleImg).Url" class="img-fluid archive-img" alt="@magazine_newsItem.photoAlt" />
+											</a>
+										}
+										<figcaption>
+							
+										</figcaption>
+									</figure>
+								</div>	
+
+							</div>
+							<!-- ********************************* -->
+							
+					   }						
+			
+					}	
+
+					else if (OpliCategories == "Gadgets")
+					{		
+						
+						<!-- ******************************* -->
+						<div class="row magazine-news-item">						
+							<div class="col-xl-2 col-lg-2 col-md-1 hidden-sm-down">
+							</div>
+							<div class="col-xl-8 col-lg-8 col-md-9 col-sm-12 col-xs-12">
+								<h2>
+                					<a href="@magazine_newsItem.Url">
+                   						@magazine_newsItem.title
+                					</a>
+            					</h2>
+								
+								@if (magazine_newsItem.HasValue("articleImg"))
+								{
+									<img src="@Umbraco.Media(magazine_newsItem.articleImg).Url" class="img-fluid news-img" alt="@magazine_newsItem.photoAlt" />           
+								}
+			
+								<p>
+                					@magazine_newsItem.metaDescription  
+                					<a href="@magazine_newsItem.Url">READ MORE >></a>
+            					</p>
+							</div>
+							<div class="col-xl-2 col-lg-2 col-md-1 hidden-sm-down">
+							</div>
+						</div>
+						<!-- ******************************* -->
+					}
+		
+					else
+						
+					{	
+						<div class="row magazine-news-item">						
+							<div class="col-xl-3 col-lg-3 col-md-2 hidden-sm-down">
+								SHARE
+								<br />
+								<div class="fb-like" data-send="false" data-width="300" data-show-faces="true"></div>
+            					<br />
+    							<g:plusone></g:plusone>
+                				<br />
+    							<script src="//platform.linkedin.com/in.js" type="text/javascript"></script>
+    							<script type="IN/Share" data-counter="right"></script>
+								<br />
+								<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+    
+							</div>
+				
+							<div class="col-xl-5 col-lg-5 col-md-5 col-sm-6 col-xs-12">
+								<a href="@magazine_newsItem.Url"><h3>@magazine_newsItem.title</h3></a>
+								<h4>@magazine_newsItem.subTitle</h4>
+							
+								<p>
+									@Umbraco.Truncate(@magazine_newsItem.metaDescription, 120, true)
+								</p>
+								<a href="@magazine_newsItem.Url">Read >></a> 
+							</div>
+				
+							<div class="col-xl-4 col-lg-4 col-md-5 col-sm-6 col-xs-12">
+								<figure>									
+									@if (magazine_newsItem.HasValue("articleImg"))
+									{
+										<a href="@magazine_newsItem.Url">	
+											<img src="@Umbraco.Media(magazine_newsItem.articleImg).Url" class="img-fluid archive-img" alt="@magazine_newsItem.photoAlt" />
+										</a>
+									}
+									<figcaption>
+							
+									</figcaption>
+								</figure>
+							</div>	
+						</div>
+						<!-- ********************************* -->
+					}	
+			}
+    	</div>
+    </div>
+    
+	<!-- Pagination -->
+	<div class="row">
+		<div class="col-xl-12 col-lg-12">
+			<nav aria-label="Page navigation">
+				<ul class="pagination group">
+				@{
+        			/*
+            			pageQuerystring = 1 == 0 = currentPage
+            			pageQuerystring = 2 == 1 = currentPage
+        			*/        
+        
+        			//PREVIOUS Link
+					<li class="page-item">
+						@if (currentPage > 0)
+            			{                											
+							<a class="page-link" href="?page=@(currentPage)" aria-label="Previous">
+								<span aria-hidden="true">&laquo;</span>
+								<span class="sr-only">Previous</span>
+							</a>	
+            			}
+            			else
+            			{
+                			<span class="page-link disabled">&laquo; Previous</span>
+            			}																																				
+					</li>
+					//Create a variable 'pages' that stores from 1 to the numberOfPages variable
+        			var pages = Enumerable.Range(1, (int)numberOfPages);
+        
+        			//Loop through the numbers in the Pages variable
+        			foreach (var number in pages)
+        			{							
+						if (number - 1 != currentPage)
+               			{
+							<li class="page-item">
+                    			<a href="?page=@number" class="page-link">@number</a>
+                			</li>
+						}
+                		else
+                		{
+							<li class="page-item active">
+                    			<span class="page-link">@number</span>
+							</li>
+                		}
+						
+					}
+					//NEXT Link
+					<li class="page-item">
+						@if (currentPage < pages.Count() - 1)
+            			{
+                			<a href="?page=@(currentPage + 2)" class="page-link" aria-label="Next">
+								<span aria-hidden="true">&raquo;</span>
+								<span class="sr-only">Next</span>
+							</a>
+            			}
+            			else
+            			{
+                			<span class="pagingDisabled" class="Bluelink">Next &raquo;</span>
+            			}
+						
+					</li>
+				}				
+				</ul>
+			</nav>
+		</div>
+	</div>
+	<!-- ********** -->		
+			
+    <div class="row">
+		<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+			<p>
+				There are @numberOfItems articles in @ArchivePageTitle
+				<br />
+				<a href="@archiveUrl">@ArchivePageTitle Archive</a>
+			</p>											 							
+		</div>
+	</div>
+}
