@@ -1,0 +1,53 @@
+@inherits Umbraco.Web.Macros.PartialViewMacroPage
+	
+@{
+	var Gadgets_node = Umbraco.Content(1137);	 
+	
+	var Gadgets_pagesToList = @Gadgets_node.Children.Where("Visible");
+	Gadgets_pagesToList = Gadgets_node.DescendantsOrSelf().Where("NodeTypeAlias == @0", "NewsPage");
+	
+	<!-- ***** Gadgets ***** -->
+	<div class="row">
+		<div class="col-12">
+			<a href="/Gadgets.aspx">Gadgets</a>
+		</div>
+	</div>
+			
+	<div class="row">		
+		<div class="col-xl-6 col-lg-6 col-md-4 col-sm-12 col-xs-12 Gadgets-news">
+			<figure>
+				@if (Gadgets_pagesToList.Last().HasValue("articleImg")) 
+				{
+					<img src="@Umbraco.Media(Gadgets_pagesToList.Last().articleImg).Url" class="img-fluid news-img" alt="@Gadgets_pagesToList.Last().photoAlt" />					
+				}
+				<figcaption>
+					<a href="@Gadgets_pagesToList.Last().Url">
+						<h3 class="photography-news">
+							@Gadgets_pagesToList.Last().title
+						</h3>							
+					</a>
+				</figcaption>
+			</figure>
+		</div>
+										
+		@foreach (var newsItem in Gadgets_pagesToList.OrderBy("createDate desc").Skip(1).Take(2))
+		{																	
+			<div class="col-xl-3 col-lg-8 col-md-4 col-sm-12 col-xs-12 Gadgets-news">
+				<figure>
+					@if (newsItem.HasValue("articleImg"))
+					{
+        				<img src="@Umbraco.Media(newsItem.articleImg).Url" alt="@newsItem.photoAlt" class="img-fluid news-img" />
+					}
+					<figcaption>
+						<a href="@newsItem.Url">
+							<h3 class="photography-news">
+								@newsItem.title
+							</h3>				
+						</a>
+					</figcaption>
+				</figure>
+			</div>
+		}						
+	</div>
+	<!-- ***** End Gadgets ***** -->
+}
