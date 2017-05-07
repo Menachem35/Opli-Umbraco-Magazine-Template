@@ -1,0 +1,199 @@
+@inherits Umbraco.Web.Macros.PartialViewMacroPage
+		
+@{
+
+	var photonics_node = Umbraco.Content(1061);	 
+	
+	var photonics_pagesToList = @photonics_node.Children.Where("Visible");		
+	 	
+	photonics_pagesToList = photonics_node.DescendantsOrSelf().Where("NodeTypeAlias == @0", "NewsPage");
+	
+	var get_feature_story = Umbraco.Content(1561); //Get properties of the Features articles page 
+	var feature_story_HP = Umbraco.Content(get_feature_story.mainNewsItem); //Get the content picker with the main story at home page
+    
+		
+	<!-- *** Get first items of Imaging & Solar *** -->
+	var Imaging_node = Umbraco.Content(1064);	 	
+	var Imaging_pagesToList = @Imaging_node.Children.Where("Visible");
+	Imaging_pagesToList = Imaging_node.DescendantsOrSelf().Where("NodeTypeAlias == @0", "NewsPage");	
+	
+	var Solar_node = Umbraco.Content(1306);	 
+	var Solar_pagesToList = @Solar_node.Children.Where("Visible");
+	Solar_pagesToList = Solar_node.DescendantsOrSelf().Where("NodeTypeAlias == @0", "NewsPage");
+
+	<!-- ****************************************** -->
+		
+	<!-- *** Headlines *** -->
+	<div class="row">
+		<div class="col-xl-6 col-lg-6 col-md-12 MainNewsBox" id="MainNewsItem">
+					
+			<figure>
+				<img src="@Umbraco.Media(feature_story_HP.articleImg).Url" alt="@feature_story_HP.photoAlt" class="img-fluid news-img" />
+				<figcaption>
+					<a href="@feature_story_HP.Url">
+						<h3 class="MainNewsTitle">@feature_story_HP.title</h3>
+					</a>
+				</figcaption>
+			</figure> 
+							
+			<!-- Old version -->
+			<!-- 
+			<p>
+            	@feature_story_HP.metaDescription
+                <br />
+				<a href="@feature_story_HP.Url" class="news_link">Continue >></a>
+			</p>
+			--> 
+		</div>
+				
+		<div class="col-xl-6 col-lg-6">
+			<div class="row">
+				<div class="col-xl-12 col-lg-12 col-md-4 MainNewsBox">
+					<figure>
+						@if (Imaging_pagesToList.Last().HasValue("articleImg")) 	
+						{
+							<img src="@Umbraco.Media(Imaging_pagesToList.Last().articleImg).Url" class="img-fluid wide-news-img" alt="@Imaging_pagesToList.Last().photoAlt" />
+						}		
+						<figcaption>							
+							<a href="@Imaging_pagesToList.Last().Url">
+								<h3 class="MainNewsTitle-1">
+									 @Imaging_pagesToList.Last().title  
+								</h3>
+							</a>
+						</figcaption>
+					</figure>
+				</div>					
+															
+				<div class="col-xl-6 col-lg-6 col-md-4 MainNewsBox">
+					<figure>
+						@if (photonics_pagesToList.Last().HasValue("articleImg")) 	
+						{
+							<img src="@Umbraco.Media(photonics_pagesToList.Last().articleImg).Url" class="img-fluid news-img" alt="@photonics_pagesToList.Last().photoAlt" />
+						}
+						<figcaption>															
+							<a href="@photonics_pagesToList.Last().Url">
+								<h3>@photonics_pagesToList.Last().title</h3>
+							</a>
+						</figcaption>	
+					</figure>							
+				</div>
+						
+				<div class="col-xl-6 col-lg-6 col-md-4 MainNewsBox">
+					<figure>
+						@if (Solar_pagesToList.Last().HasValue("articleImg")) 	
+						{
+							<img src="@Umbraco.Media(Solar_pagesToList.Last().articleImg).Url" class="img-fluid news-img" alt="@Solar_pagesToList.Last().photoAlt" />
+						}
+						<figcaption>															
+							<a href="@Solar_pagesToList.Last().Url">
+								<h3>@Solar_pagesToList.Last().title</h3>
+							</a>
+					</figcaption>	
+					</figure>
+				</div>
+			</div>
+					
+		</div>
+	</div>
+	<!-- *** End Headlines *** -->
+							
+	<!-- Advertising -->
+	<div class="row">
+		<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+		 	
+			<!-- ***** Google AdSense ****** -->
+			
+			<!-- ************** -->
+			
+			<!-- *** Insaco *** -->
+			<center>
+				<a href="https://goo.gl/11fOnR" target="_blank">
+					<img src="~/media/7913/insaco-feb-2017-opli-banner.jpg" class="img-fluid" />
+			        <!-- <img src="~/media/6081/insaco-upper-banner.jpg" class="img-fluid" /> -->
+				</a>  
+			</center>
+		    <!-- ************** -->
+						
+		</div>
+	</div>
+	<!-- *********** -->
+			
+	<!-- *** More news at photonics and physics *** -->						
+	<div class="row">
+		<!-- *** Photonics and physics - left box *** -->
+		<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+				
+			<div class="category-title-container">				
+				<h2 class="category-title-item">
+					<a href="/photonics.aspx">Photonics and Physics</a>
+				</h2>			
+				<div class="stripe-line"></div>
+					 
+			</div>
+			
+			@foreach (var photonics_newsItem in photonics_pagesToList.OrderBy("createDate desc").Skip(1).Take(5))
+			{
+				<div class="img-text-container">
+					<div class="news-img-left">
+						@if (photonics_newsItem.HasValue("articleImg")) 	
+						{
+							<a href="@photonics_newsItem.Url">
+								<img src="@Umbraco.Media(photonics_newsItem.articleImg).Url" alt="@photonics_newsItem.photoAlt" />
+							</a>
+						}
+					</div>
+					<div class="news-text-right">
+						<h3><a href="@photonics_newsItem.Url">@photonics_newsItem.title</a></h3>
+						<p>						
+							@Umbraco.Truncate(@photonics_newsItem.metaDescription, 120, true)
+						</p>
+					</div>	
+				</div>
+			} 
+																				
+		</div>
+				
+		<!-- *** More in Photonics and physics - right box *** -->
+		<div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+					
+			<div class="category-title-container">
+				<h2 class="category-title-item">More in Photonics</h2>	
+				<div class="stripe-line"></div>						
+			</div>
+			
+			 @foreach (var photonics_newsItem in photonics_pagesToList.OrderBy("createDate desc").Skip(6).Take(14))
+			{
+				<h4 class="physics-news">
+					<a href="@photonics_newsItem.Url">
+						@photonics_newsItem.title
+					</a>
+				</h4>				
+			}	
+		</div>
+		<!-- *** End More in Photonics and physics - right box *** -->
+				
+		<!-- Up coming events -->
+		<div class="col-xl-3 hidden-lg-down Events-box">
+					
+			<div class="category-title-container">
+				<h2 class="category-title-item">UPCOMING EVENTS</h2>
+											 
+			</div>
+			<aside>		
+				@Umbraco.RenderMacro("ShowEventsSidebar")
+			</aside>
+		</div>
+		<!-- End Upcoming events -->
+				
+	</div>
+	<!-- *** End More news at photonics and physics *** -->
+			
+	<!-- Upcoming Events - lg-down -->
+	<div class="row">
+		<div class="hidden-xl-up col-lg-12 col-md-12 col-sm-12" style="background-color: orange; height: 200px;">
+			<h2 class="category-title-item">UPCOMING EVENTS</h2>
+		</div>
+	</div>
+	<!-- End Upcoming Events - lg-down -->
+		
+}
