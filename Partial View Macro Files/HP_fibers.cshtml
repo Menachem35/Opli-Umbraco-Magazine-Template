@@ -1,0 +1,71 @@
+@inherits Umbraco.Web.Macros.PartialViewMacroPage
+	
+@{
+	var Fibers_node = Umbraco.Content(1120);	 
+	
+	var Fibers_pagesToList = @Fibers_node.Children.Where("Visible");
+	Fibers_pagesToList = Fibers_node.DescendantsOrSelf().Where("NodeTypeAlias == @0", "NewsPage");
+	
+	<!-- Optical network -->
+    <div class="content">
+    	<h3 class="HP_section_title"><a href="/fibers.aspx" class="title_link">Optical Networks & Fibers</a></h3>
+        
+	    <div class="main_news_section">
+        
+			@foreach (var newsItem in Fibers_pagesToList.OrderBy("createDate desc").Take(3))
+			{		   		
+                
+				<div class="img_frame">
+					@if (newsItem.HasValue("articleImg"))
+					{
+                		<a href="@newsItem.Url" class="img_link">
+                    		<img src="@Umbraco.Media(newsItem.articleImg).Url" width="140" height="100" alt="@newsItem.photoAlt" />
+                    	</a>
+					}
+                 </div>                    
+                 <div class="news_frame_small">
+                 	<h2 class="entry_title">
+                    	<a href="@newsItem.Url" class="news_link">
+                        	@newsItem.title  
+                        </a>
+                    </h2>
+                 </div>      
+                 <div style="clear:both"></div>              
+                 <!-- **************************** -->                                        
+			}
+                                                                                                                                       
+        </div>                
+        <!-- ************************************************************************* -->
+								
+		<div class="main_news_section_right">
+            
+			@foreach (var newsItem in Fibers_pagesToList.OrderBy("createDate desc").Skip(3).Take(3))
+			{
+        	
+				<div class="img_frame">
+					@if (newsItem.HasValue("articleImg"))
+					{
+						<a href="@newsItem.Url" class="img_link">
+                			<img src="@Umbraco.Media(newsItem.articleImg).Url" width="140" height="100" alt="@newsItem.photoAlt" />
+                		</a>
+					}
+            	</div>                    
+            	<div class="news_frame_small">
+	            	<h2 class="entry_title">
+	                	<a href="@newsItem.Url" class="news_link">
+	                         @newsItem.title      
+	                    </a>
+	                </h2>
+	            </div>               
+	            <div style="clear:both"></div>     
+		        <!-- **************************** -->                   
+			}                                                                                                                                             
+        </div>
+                    
+        <div style="clear:both"></div>    
+    </div>
+    <!-- End Optical network -->
+                																          		       
+                
+							
+}
