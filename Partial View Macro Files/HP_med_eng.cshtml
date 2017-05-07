@@ -1,0 +1,45 @@
+@inherits Umbraco.Web.Macros.PartialViewMacroPage
+	
+@{
+	var med_eng_node = Umbraco.Content(1240);	 
+	
+	var med_eng_pagesToList = @med_eng_node.Children.Where("Visible");
+	med_eng_pagesToList = med_eng_node.DescendantsOrSelf().Where("NodeTypeAlias == @0", "NewsPage");
+	
+	
+	
+	<!-- Medical Engineering -->
+    <div class="content">
+    	<h3 class="HP_section_title"><a href="/medical.aspx" class="title_link">Medical Engineering</a></h3>
+        
+		@foreach (var med_eng_newsItem in med_eng_pagesToList.OrderBy("createDate desc").Take(3))
+		{			
+				
+            <div class="news_box">
+            	<div class="img_frame">
+					@if (med_eng_newsItem.HasValue("articleImg")) 	
+					{
+                		<a href="@med_eng_newsItem.Url" class="img_link">
+                   			<img src="@Umbraco.Media(med_eng_newsItem.articleImg).Url" width="140" height="100" alt="@med_eng_newsItem.photoAlt" />
+                    	</a>
+					}
+                </div>                    
+                <div class="news_frame">
+                	<h2>
+                		<a href="@med_eng_newsItem.Url" class="news_link">
+                              @med_eng_newsItem.title        
+                    	</a>
+                	</h2>
+                	<p class="HP_text_box">
+                         @med_eng_newsItem.metaDescription                              
+                	</p>                        
+            	</div>
+            	<div style="clear:both"></div>                     
+            </div>
+            <!-- *************************************** -->
+		}
+                                                                                                                                                                                                                                                                               
+
+    </div>
+    <!-- End Medical Engineering -->
+}
