@@ -1,0 +1,48 @@
+@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+    Layout = "Layout.cshtml";
+}
+
+@section head 
+{
+	<title>Opli: The Photonics Magazine</title>
+	<meta name="description" content="@Umbraco.Field("descriptionContent")" /> 
+    <meta name="keywords" content="@Umbraco.Field("descriptionKeywords")" /> 
+}
+
+	<!-- Photonics & Physics -->
+	@Umbraco.RenderMacro("HP_Photonics_Lasers")
+	<!-- End Photonics & Physics -->
+		
+    <!-- Imaging & Machine Vision -->
+	@Umbraco.RenderMacro("HP_Imaging")                                                                                                                                                                                                                                                                                                                                                                                                                         
+    <!-- End Imaging & Meachine Vision -->
+   
+    <!-- Illumination -->
+    @Umbraco.RenderMacro("HP_LEDs")
+    <!-- End Illumination -->
+
+    <!-- Tech -->            
+    @Umbraco.RenderMacro("HP_Tech")
+    <!-- End Tech -->
+  
+    <!-- Solar Energy -->
+    @Umbraco.RenderMacro("HP_Solar")
+    <!-- End Solar Energy -->
+			
+	<!-- Astronomy -->
+    @Umbraco.RenderMacro("HP_Space")
+    <!-- Asrtronomy -->
+           
+    <!-- Photography -->
+    @Umbraco.RenderMacro("HP_Photography")
+    <!-- End Photography -->
+            
+    <!-- Gadgets -->
+    @Umbraco.RenderMacro("HP_Gadgets")
+    <!-- End Gadgets -->
+         
+    <!-- Life style -->
+    @Umbraco.RenderMacro("HP_Lifestyle")
+    <!-- End Life style -->
+	
