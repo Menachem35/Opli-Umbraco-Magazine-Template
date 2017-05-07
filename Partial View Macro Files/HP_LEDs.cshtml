@@ -1,0 +1,64 @@
+@inherits Umbraco.Web.Macros.PartialViewMacroPage
+
+@{
+	var LEDs_light_node = Umbraco.Content(1155);	 
+	
+	var LEDs_light_pagesToList = @LEDs_light_node.Children.Where("Visible");
+	LEDs_light_pagesToList = LEDs_light_node.DescendantsOrSelf().Where("NodeTypeAlias == @0", "NewsPage");
+	
+	
+	<!-- *** Illumination & LED's *** -->
+	<div class="row">
+		<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+			<div class="category-title-container">
+				<h2 class="category-title-item"><a href="/light.aspx">Illumination & LED's</a></h2>
+				<div class="stripe-line"></div>					 
+			</div>
+					
+		</div>
+	</div>
+			
+	<div class="row">
+		@foreach (var newsItem in LEDs_light_pagesToList.OrderBy("createDate desc").Take(4))
+		{
+			<div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 LEDs-news">
+				<figure>
+					<a href="@newsItem.Url">
+						<div class="LEDs-img">
+                 			@if (newsItem.HasValue("articleImg"))
+							{    	
+					   		 <img src="@Umbraco.Media(newsItem.articleImg).Url" class="img-fluid news-img" alt="@newsItem.photoAlt" />
+							}						
+						</div>
+						<h3>
+								@Umbraco.Truncate(@newsItem.title, 80, true)										 
+						</h3>
+					</a>					
+				</figure>
+			</div>
+		}				
+	</div>
+			
+	<div class="row">
+		@foreach (var newsItem in LEDs_light_pagesToList.OrderBy("createDate desc").Skip(4).Take(4))
+		{
+			<div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 LEDs-news">
+				<figure>
+					<a href="@newsItem.Url">
+						<div class="LEDs-img">
+                 			@if (newsItem.HasValue("articleImg"))
+							{   							
+					    		<img src="@Umbraco.Media(newsItem.articleImg).Url" class="img-fluid news-img" alt="@newsItem.photoAlt" />							
+							}	
+						</div>					
+						<h3>
+							@Umbraco.Truncate(@newsItem.title, 80, true)			
+						</h3>
+					</a>					
+				</figure>
+			</div>		
+		}		
+	</div>
+	<!-- *** End Illumination & LED's *** -->
+						
+}
