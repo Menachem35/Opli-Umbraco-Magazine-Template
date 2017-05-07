@@ -1,0 +1,105 @@
+@inherits Umbraco.Web.Macros.PartialViewMacroPage
+
+@{
+	var Imaging_node = Umbraco.Content(1064);	 
+	
+	var Imaging_pagesToList = @Imaging_node.Children.Where("Visible");
+    Imaging_pagesToList = Imaging_node.DescendantsOrSelf().Where("NodeTypeAlias == @0", "NewsPage");
+	
+	
+	<!-- *** Imaging and Machine-vision *** -->
+	<div class="row">		
+		<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+			<div class="category-title-container">
+				<h2 class="category-title-item"><a href="/vision.aspx">Machine vision</a></h2>
+				<div class="stripe-line"></div>
+					 
+			</div>
+		</div>				
+			
+	</div>
+			
+	<div class="row">
+				
+		<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 MainNewsBox" id="Main-news-Machine-vision">
+			<figure>
+					@if (Imaging_pagesToList.Last().HasValue("articleImg")) 	
+					{
+						<img src="@Umbraco.Media(Imaging_pagesToList.Last().articleImg).Url" class="img-fluid" alt="@Imaging_pagesToList.Last().photoAlt" />
+					}
+					<figcaption>
+						<a href="@Imaging_pagesToList.Last().Url">
+							<h3 class="MainNewsTitle-1">
+								 @Imaging_pagesToList.Last().title 
+							</h3>
+						</a>
+					</figcaption>
+				</figure>
+			</div>
+		
+	
+			@foreach (var newsItem in Imaging_pagesToList.OrderBy("createDate desc").Skip(1).Take(2))
+		 	{
+				<div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 Machine-vision-NewsBox">
+					<figure>
+						@if (newsItem.HasValue("articleImg")) 	
+						{
+					    	<img src="@Umbraco.Media(newsItem.articleImg).Url" class="img-fluid news-img" alt="@newsItem.Last().photoAlt" />
+						}
+						<figcaption>
+							<a href="@newsItem.Url">
+								<h3>
+									@newsItem.title 
+								</h3>
+							</a>
+						</figcaption>
+					</figure>
+				</div>
+			}	
+				
+	</div>
+			
+	<div class="row">
+		@foreach (var newsItem in Imaging_pagesToList.OrderBy("createDate desc").Skip(3).Take(4))
+		 	{
+				<div class="col-xl-3 col-lg-3 Machine-vision-NewsBox">
+					<figure>
+					    <img src="@Umbraco.Media(newsItem.articleImg).Url" class="img-fluid news-img" alt="@newsItem.Last().photoAlt" />
+						<figcaption>
+							<a href="@newsItem.Url">
+								<h3>
+									@newsItem.title
+								</h3>
+							</a>
+						</figcaption>
+					</figure>
+				</div>
+			}																				
+	</div>
+	<!-- *** End Imaging and Machine-vision *** -->
+	
+	<!-- Advertising -->
+	<div class="row">
+		<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+			
+			
+			<!-- Advertising -->
+			
+			<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+			<!-- Opli Responsive Sept 28 2016 -->
+			<ins class="adsbygoogle"
+     			style="display:block"
+     			data-ad-client="ca-pub-9304280584011820"
+     			data-ad-slot="5740361604"
+     			data-ad-format="auto"></ins>
+			<script>
+				(adsbygoogle = window.adsbygoogle || []).push({});
+			</script>
+				
+			<!-- *********** -->
+			
+			
+		</div>
+	</div>
+	<!-- *********** -->														 
+}
