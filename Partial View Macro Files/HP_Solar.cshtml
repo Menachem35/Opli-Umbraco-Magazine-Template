@@ -1,0 +1,129 @@
+@inherits Umbraco.Web.Macros.PartialViewMacroPage
+
+@{
+	var Solar_node = Umbraco.Content(1306);	 
+	
+	var Solar_pagesToList = @Solar_node.Children.Where("Visible");
+	
+	Solar_pagesToList = Solar_node.DescendantsOrSelf().Where("NodeTypeAlias == @0", "NewsPage");
+	
+	<!-- **** Solar Energy **** -->
+	<div class="row">
+		<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+			<h2><a href="/Solar.aspx">Solar Energy</a></h2>
+		</div>
+	</div>
+			
+	<div class="row">
+		<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 Solar">
+			<div class="Solar-1-left">
+				<h3 class="MainNewsTitle">
+					<a href="@Solar_pagesToList.Last().Url">@Solar_pagesToList.Last().title</a>
+				</h3>																	
+				<p> 
+					@Solar_pagesToList.Last().metaDescription
+				</p>																	
+			</div>
+			<div class="Solar-2-left">
+				<img src="@Umbraco.Media(Solar_pagesToList.Last().articleImg).Url" alt="@Solar_pagesToList.Last().photoAlt" class="img-fluid Solar-img" />
+			</div>
+		</div>
+				
+		<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12 Solar-right">
+			<div class="row">
+				@foreach (var solar_newsItem in Solar_pagesToList.OrderBy("createDate desc").Skip(1).Take(2))
+				{ 
+					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-7 col-xs-12 Solar-right-1">
+						<h3>
+							<a href="@solar_newsItem.Url">@solar_newsItem.title</a> 
+						</h3>
+					
+						<h4>
+							@solar_newsItem.subTitle																	
+						</h4> 
+					</div>
+																								
+					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-5 col-xs-12 Solar-right-2">
+						@if (solar_newsItem.HasValue("articleImg"))
+						{
+        					<a href="@solar_newsItem.Url">
+            					<img src="@Umbraco.Media(solar_newsItem.articleImg).Url" class="img-fluid Solar-img-right" alt="@solar_newsItem.photoAlt" />
+            				</a>
+						} 
+					</div>
+												
+					<div class="hidden-md-up col-sm-12 col-xs-12 m-t-1">
+						<!-- spacer - m-t-1 -->		
+					</div>
+				}																																			
+			</div>
+		</div>
+				
+		<div class="col-xl-2 col-lg-2 hidden-md-down" style="height: 950px;">
+			<!-- Advertising (hiding in small screens) -->
+			
+			<!-- Google Ads -->
+			<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+			<!-- opli hp -->
+			<ins class="adsbygoogle"
+     			style="display:inline-block;width:160px;height:600px"
+     			data-ad-client="ca-pub-9304280584011820"
+     			data-ad-slot="8237964527"></ins>
+			<script>
+				(adsbygoogle = window.adsbygoogle || []).push({});
+			</script>
+			<!-- ******** -->
+			
+			<!-- ************************************* -->
+		</div>
+								
+	</div>
+			
+	<!-- Spacer -->
+	<div class="row">
+		<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 m-t-2">
+			<!-- spacer - m-t-2 -->			
+		</div>
+	</div>
+			
+	<!-- 2nd row Solar -->
+	<div class="row">
+		<div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12 Solar-2">
+			<figure>
+				<img src="@Umbraco.Media(Solar_pagesToList.Last().Previous(3).articleImg).Url" alt="@Solar_pagesToList.Last().Previous(3).photoAlt" class="img-fluid news-img" />
+				<figcaption>
+					<a href="@Solar_pagesToList.Last().Previous(3).Url">
+						<h3 class="news-headline">
+							@Solar_pagesToList.Last().Previous(3).title
+						</h3>
+					</a>
+				</figcaption>
+			</figure>
+				
+		</div>
+				
+		<div class="hidden-lg-up col-md-12 col-sm-12 col-xs-12 m-t-1">
+			<!-- spacer - m-t-1 -->			
+		</div>
+			
+		@foreach (var solar_newsItem in Solar_pagesToList.OrderBy("createDate desc").Skip(4).Take(2))
+		{ 	
+			<div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12 Solar-2">
+				<figure>
+					<img src="@Umbraco.Media(solar_newsItem.articleImg).Url" alt="@solar_newsItem.photoAlt" class="img-fluid news-img" />
+					<figcaption>
+						<a href="@solar_newsItem.Url">
+							<h3>
+								@solar_newsItem.title
+							</h3>
+						</a>
+					</figcaption>
+				</figure>
+					
+			</div>
+		}					
+	</div>
+	<!-- End 2nd row Solar -->
+			
+	<!-- **** End Solar Energy **** -->							
+}
