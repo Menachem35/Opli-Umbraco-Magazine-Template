@@ -1,0 +1,50 @@
+@inherits Umbraco.Web.Macros.PartialViewMacroPage
+
+@{
+	var Astronomy_node = Umbraco.Content(1226);	 
+	
+	var Astronomy_pagesToList = @Astronomy_node.Children.Where("Visible");
+	
+	Astronomy_pagesToList = Astronomy_node.DescendantsOrSelf().Where("NodeTypeAlias == @0", "NewsPage");
+				
+	
+	<!-- ***** Astronomy ***** -->
+	<div class="row">
+		<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+			<h2><a href="/space.aspx">Astronomy</a></h2>
+		</div>
+	</div>
+			
+	<div class="row">
+		<div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-12">
+			<div class="Astronomy-Box">
+				<h5><a href="/space.aspx">Latest news</a></h5>						
+				@foreach (var Astronomy_newsItem in Astronomy_pagesToList.OrderBy("createDate desc").Take(5))
+		 		{
+					<a href="@Astronomy_newsItem.Url"><h3>@Astronomy_newsItem.title</h3></a>						
+				}
+			</div>
+		</div>										
+				
+		@foreach (var Astronomy_newsItem in Astronomy_pagesToList.OrderBy("createDate desc").Skip(5).Take(3))
+		{
+			<div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-12 Astronomy-Box-1">
+				<figure class="space-img">
+					<img src="@Umbraco.Media(Astronomy_newsItem.articleImg).Url" alt="@Astronomy_newsItem.photoAlt" class="img-fluid news-img" />					  
+					<figcaption>
+						<a href="@Astronomy_newsItem.Url">
+							<h4>
+								@Astronomy_newsItem.title 
+							</h4>
+						</a>
+					</figcaption>
+				</figure>
+			</div>
+				
+			<div class="hidden-lg-up col-md-12 col-sm-12 col-xs-12 m-t-1">
+				<!-- spacer - m-t-1 -->			
+			</div>
+		}																												
+	</div>
+	<!-- ***** End Astronomy ***** -->		
+}
