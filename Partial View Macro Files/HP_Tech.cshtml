@@ -1,0 +1,148 @@
+@inherits Umbraco.Web.Macros.PartialViewMacroPage
+
+@{	
+	string CategoryTitle = "";
+	string CategoryUrl = "";
+	var CategoryID = 1111;
+	
+	<!-- Fibers, Tech, Medical, Displays, Electronics, Aviation -->
+	<div class="row">
+		<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 m-t-1">
+			<!-- spacer - m-t-1 -->			
+		</div>
+	</div>
+			
+	<div class="row">
+		@for(var i = 1; i < 7; i++)
+		{								
+			switch (i) 
+			{
+				case 1:
+				{
+					CategoryTitle = "Optical Networks & Fibers";
+					CategoryID = 1120;
+					CategoryUrl = "/fibers.aspx";
+				}
+				break;
+				
+				case 2:
+				{
+					CategoryTitle = "Medical Engineering";	
+					CategoryID = 1240;
+					CategoryUrl = "/medical.aspx";
+				}
+				break;
+				
+				case 3:
+				{
+					CategoryTitle = "Displays";	
+					CategoryID = 1475;
+					CategoryUrl = "/Displays.aspx";
+				}
+				break;
+				
+				case 4:
+				{
+					CategoryTitle = "Electronics";	
+					CategoryID = 1475;
+					CategoryUrl = "/electronics.aspx";
+				}
+				break;
+				
+				case 5:
+				{
+					CategoryTitle = "Aviation";	
+					CategoryID = 1475;
+					CategoryUrl = "";
+				}
+				break;
+								
+				case 6:
+				{
+					CategoryTitle = "Research";	
+					CategoryID = 1475;
+					CategoryUrl = "/Research.aspx";
+				}
+				break;
+			}								
+						     	
+			<!-- Tech --> 			
+			var Tech_node = Umbraco.Content(CategoryID);	 	
+			var Tech_pagesToList = Tech_node.Children.Where("Visible");
+			Tech_pagesToList = Tech_node.DescendantsOrSelf().Where("NodeTypeAlias == @0", "NewsPage");
+			<!-- ******* -->
+			
+				
+				
+			<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 Tech-box">
+				
+				<!-- ************* Mixed Nodes ***************** -->
+				@if (CategoryTitle == "Electronics")
+				{
+					Tech_pagesToList = Tech_node.DescendantsOrSelf().Where("opliCategory == @0", "Electronics");
+				}
+				
+				@if (CategoryTitle == "Research")
+				{
+					Tech_pagesToList = Tech_node.DescendantsOrSelf().Where("opliCategory == @0", "Research");
+				}
+	
+				@if (CategoryTitle == "Aviation")
+				{
+					Tech_pagesToList = Tech_node.DescendantsOrSelf().Where("opliCategory == @0", "Aviation");
+				}
+	
+				@if (CategoryTitle == "Displays")
+				{
+					Tech_pagesToList = Tech_node.DescendantsOrSelf().Where("opliCategory == @0", "Displays");
+				}			
+				<!-- ******************************************* -->
+					
+				<h2><a href="@CategoryUrl">@CategoryTitle</a></h2>						
+				
+							
+				<figure class="Tech-images">
+					@if (Tech_pagesToList.Last().HasValue("articleImg")) 	
+					{
+						<img src="@Umbraco.Media(Tech_pagesToList.Last().articleImg).Url" alt="@Tech_pagesToList.Last().photoAlt" class="img-fluid Tech-images" />
+					}
+					<figcaption>
+						<a href="@Tech_pagesToList.Last().Url">
+							<h3>
+								 @Tech_pagesToList.Last().title	  
+							</h3>
+						</a>
+					</figcaption>
+				</figure>
+				
+				<div class="img-text-container">
+					<div class="Tech-text">
+						<h5>Latest</h5>							
+						<h4>        
+							<a href="@Tech_pagesToList.Last().Previous().Url">								
+								@Umbraco.Truncate(@Tech_pagesToList.Last().Previous().title, 70, true)
+							</a>
+						</h4>
+					</div>
+						
+					<div class="Tech-small-img">
+						@if (Tech_pagesToList.Last().Previous().HasValue("articleImg")) 	
+						{          
+							<a href="@Tech_pagesToList.Last().Previous().Url">
+								<img src="@Umbraco.Media(Tech_pagesToList.Last().Previous().articleImg).Url" alt="@Tech_pagesToList.Last().Previous().photoAlt" class="Tech-img-small" />
+							</a>
+						}
+					</div>	
+				</div>
+										
+				<ul class="Tech-news-list">
+					@foreach (var newsItem in Tech_pagesToList.OrderBy("createDate desc").Skip(2).Take(5))
+					{
+						<li><a href="@newsItem.Url">@newsItem.title</a></li>					
+					}
+				</ul>				
+			</div>						
+		}														
+		<!-- *** End Fibers, Tech, Medical, Displays, Electronics, Aviation ***-->						
+	</div>
+}
