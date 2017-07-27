@@ -1,0 +1,10 @@
+@inherits Umbraco.Web.Macros.PartialViewMacroPage
+	
+
+@{
+	
+	var get_Events = Umbraco.Content(1561); //Get the Events from the Feature News page 
+		
+	@Html.Raw(get_Events.opliEvents.ToString()); // Display the content of the Richtext property
+	
+}
