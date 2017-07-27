@@ -1,0 +1,111 @@
+@inherits Umbraco.Web.Macros.PartialViewMacroPage
+	
+	@{
+	
+	var get_TrendingPosts = Umbraco.Content(1561); //Get the Trending posts from content picker in the Feature News page 
+
+
+	var Trending_Post_1 = Umbraco.Content(get_TrendingPosts.trendingPost1Sidebar);
+	var Trending_Post_2 = Umbraco.Content(get_TrendingPosts.trendingPost2Sidebar);
+	var Trending_Post_3 = Umbraco.Content(get_TrendingPosts.trendingPost3Sidebar);
+	var Trending_Post_4 = Umbraco.Content(get_TrendingPosts.trendingPost4Sidebar);
+	var Trending_Post_5 = Umbraco.Content(get_TrendingPosts.trendingPost5Sidebar);
+	var Trending_Post_6 = Umbraco.Content(get_TrendingPosts.trendingPost6Sidebar);
+	
+	<div class="img_frame">
+    	<a href="@Trending_Post_1.Url" class="img_link">
+        	<img src="@Umbraco.Media(Trending_Post_1.articleImg).Url" width="140" height="100" alt="@Trending_Post_1.photoAlt" />
+        </a>
+    </div>                    
+    <div class="news_frame_small">
+    	<h2 class="entry_title">
+        	<a href="@Trending_Post_1.Url" class="news_link">
+                 @Trending_Post_1.title   
+            </a>
+        </h2>
+    </div>
+
+    <div style="clear:both"></div>
+    <!-- ********* -->
+	
+    <div class="img_frame">
+    	<a href="@Trending_Post_2.Url" class="img_link">
+        	<img src="@Umbraco.Media(Trending_Post_2.articleImg).Url" width="140" height="100" alt="@Trending_Post_2.photoAlt" />
+        </a>
+    </div>                    
+    <div class="news_frame_small">
+    	<h2 class="entry_title">
+        	<a href="@Trending_Post_2.Url" class="news_link">
+                 @Trending_Post_2.title   
+            </a>
+        </h2>
+    </div>
+
+    <div style="clear:both"></div>
+    <!-- ********* -->
+				
+	<div class="img_frame">
+    	<a href="@Trending_Post_3.Url" class="img_link">
+        	<img src="@Umbraco.Media(Trending_Post_3.articleImg).Url" width="140" height="100" alt="@Trending_Post_3.photoAlt" />
+        </a>
+    </div>                    
+    <div class="news_frame_small">
+    	<h2 class="entry_title">
+        	<a href="@Trending_Post_3.Url" class="news_link">
+                 @Trending_Post_3.title   
+            </a>
+        </h2>
+    </div>
+
+    <div style="clear:both"></div>
+    <!-- ********* -->
+				
+	<div class="img_frame">
+    	<a href="@Trending_Post_4.Url" class="img_link">
+        	<img src="@Umbraco.Media(Trending_Post_4.articleImg).Url" width="140" height="100" alt="@Trending_Post_4.photoAlt" />
+        </a>
+    </div>                    
+    <div class="news_frame_small">
+    	<h2 class="entry_title">
+        	<a href="@Trending_Post_4.Url" class="news_link">
+                 @Trending_Post_4.title   
+            </a>
+        </h2>
+    </div>
+
+    <div style="clear:both"></div>
+    <!-- ********* -->
+				
+	<div class="img_frame">
+    	<a href="@Trending_Post_5.Url" class="img_link">
+        	<img src="@Umbraco.Media(Trending_Post_5.articleImg).Url" width="140" height="100" alt="@Trending_Post_5.photoAlt" />
+        </a>
+    </div>                    
+    <div class="news_frame_small">
+    	<h2 class="entry_title">
+        	<a href="@Trending_Post_5.Url" class="news_link">
+                 @Trending_Post_5.title   
+            </a>
+        </h2>
+    </div>
+
+    <div style="clear:both"></div>
+    <!-- ********* -->
+				
+	<div class="img_frame">
+    	<a href="@Trending_Post_6.Url" class="img_link">
+        	<img src="@Umbraco.Media(Trending_Post_6.articleImg).Url" width="140" height="100" alt="@Trending_Post_6.photoAlt" />
+        </a>
+    </div>                    
+    <div class="news_frame_small">
+    	<h2 class="entry_title">
+        	<a href="@Trending_Post_6.Url" class="news_link">
+                 @Trending_Post_6.title   
+            </a>
+        </h2>
+    </div>
+
+    <div style="clear:both"></div>
+    <!-- ********* -->
+
+}
