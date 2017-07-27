@@ -1,0 +1,90 @@
+@inherits Umbraco.Web.Macros.PartialViewMacroPage
+
+
+	<!-- Upper Menu -->
+	
+	
+		<button class="navbar-toggler hidden-md-up" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar2" aria-controls="exCollapsingNavbar2" aria-expanded="false" aria-label="Toggle navigation">
+			&#9776;
+		</button>
+	
+		<div class="collapse navbar-toggleable-sm" id="exCollapsingNavbar2">
+			<!-- <a class="navbar-brand" href="#">Opli</a> -->
+			<ul class="nav navbar-nav">
+				<li class="nav-item active">
+					<a class="nav-link" href="~/Default.aspx">Home <span class="sr-only">(current)</span></a>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Photonics</a>
+					<div class="dropdown-menu" aria-labelledby="Preview">
+						<a class="dropdown-item" href="~/Photonics.aspx">Photonics</a>
+						<a class="dropdown-item" href="~/lasers.aspx">Lasers</a> 
+						<a class="dropdown-item" href="~/vision.aspx">Machine Vision</a>
+						<a class="dropdown-item" href="~/light.aspx">Illumination & LEDs</a>
+						<a class="dropdown-item" href="~/fibers.aspx">Optical Networks & Fibers</a>
+						<a class="dropdown-item" href="~/Observation.aspx">Observation & surveillance</a>
+						<a class="dropdown-item" href="~/OptoMechanics.aspx">Optomechanics</a>
+						<a class="dropdown-item" href="~/magazine/articles_mag.aspx">Articles</a>
+					</div>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="~/medical.aspx">Medical</a>
+				</li>
+						
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Tech</a>
+					<div class="dropdown-menu" aria-labelledby="Preview">
+						<a class="dropdown-item" href="~/electronics.aspx">Electronics</a>
+						<a class="dropdown-item" href="~/Research.aspx">Research</a> 
+						<a class="dropdown-item" href="~/Aviation.aspx">Aviation</a>
+						<a class="dropdown-item" href="~/Displays.aspx">Displays</a>
+						<a class="dropdown-item" href="~/fibers.aspx">Optical Networks & Fibers</a>
+						<a class="dropdown-item" href="~/Energy.aspx">Alternative Energy</a>
+					</div>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="~/Solar.aspx">Solar energy</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="~/space.aspx">Astronomy</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="~/photography.aspx">Photography</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="~/Gadgets.aspx">Gadgets</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="~/lifestyle.aspx">Lifestyle</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="~/jobs.aspx">Jobs</a>
+				</li>
+				
+			</ul>
+				
+			<!--			
+			<form class="form-inline pull-xs-right">
+				<input class="form-control" type="text" placeholder="Search">
+				<button class="btn btn-outline-success" type="submit">Search</button>
+			</form>
+			-->
+					
+		   <!-- ***** Search box google ******** -->
+			<form class="form-inline pull-xs-right" action="http://opli.net/search-results/" id="cse-search-box">				 			
+				<input type="hidden" name="cx" value="partner-pub-9304280584011820:7782171202" />
+				<input type="hidden" name="cof" value="FORID:10" />
+				<input type="hidden" name="ie" value="UTF-8" />						
+				<input type="text"   name="q"  class="form-control" placeholder="Search" />						 
+				<button class="btn btn-outline-success" name="sa" value="Search" type="submit">Search</button>					
+			</form>
+
+			<script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
+			<!-- ************ -->
+  
+		</div>
+					
+
+    
+        <!-- End Upper Menu -->
+
