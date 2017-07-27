@@ -1,0 +1,270 @@
+@inherits Umbraco.Web.Macros.PartialViewMacroPage
+
+@{
+	
+	var get_releatedArticles = Umbraco.Content(1561);
+	
+	string PageCategory = CurrentPage.opliCategory;
+
+
+	var RA_1_ID = 1111;
+	var RA_2_ID = 1111;
+	var RA_3_ID = 1111;
+	
+	var Recommend_A_1_ID = 1111;
+	var Recommend_A_2_ID = 1111;
+	
+	string MoreStoriesIn = "";
+	
+	switch (PageCategory)
+	{
+		case "Photonics": 
+		{
+			RA_1_ID = get_releatedArticles.relatedArticle1Photonics;
+			RA_2_ID = get_releatedArticles.relatedArticle2Photonics;
+			RA_3_ID = get_releatedArticles.relatedArticle3Photonics;
+			MoreStoriesIn = "Optics";
+		}
+		break;
+		
+		case "Lasers":
+		{
+			RA_1_ID = get_releatedArticles.relatedArticle1Lasers;
+			RA_2_ID = get_releatedArticles.relatedArticle2Lasers;
+			RA_3_ID = get_releatedArticles.relatedArticle3Lasers;
+			MoreStoriesIn = "Lasers";
+		}
+		break;
+		
+		case "MachineVision":
+		{
+			RA_1_ID = get_releatedArticles.relatedArticle1Vision;
+			RA_2_ID = get_releatedArticles.relatedArticle2Vision;
+			RA_3_ID = get_releatedArticles.relatedArticle3Vision;
+			MoreStoriesIn = "Machine Vision";
+		}
+		break;
+		
+		case "LEDs":
+		{
+			RA_1_ID = get_releatedArticles.relatedArticle1LEDs;
+			RA_2_ID = get_releatedArticles.relatedArticle2LEDs;
+			RA_3_ID = get_releatedArticles.relatedArticle3LEDs;
+			MoreStoriesIn = "Illumination, LED's and light";
+		}
+		break;
+		
+		case "Fibers":
+		{
+			RA_1_ID = get_releatedArticles.relatedArticle1Fibers;
+			RA_2_ID = get_releatedArticles.relatedArticle2Fibers;
+			RA_3_ID = get_releatedArticles.relatedArticle3Fibers;
+			MoreStoriesIn = "Optical Networks & Fibers";
+		}
+		break;
+        
+		case "surveillance":
+		{
+			RA_1_ID = get_releatedArticles.relatedArticle1Observation;
+			RA_2_ID = get_releatedArticles.relatedArticle2Observation;
+			RA_3_ID = get_releatedArticles.relatedArticle3Observation;
+			MoreStoriesIn = "Observation & surveillance";
+		}
+		break;
+		
+		case "Mechanics":
+		{
+			RA_1_ID = get_releatedArticles.relatedArticle1Mechanics;
+			RA_2_ID = get_releatedArticles.relatedArticle2Mechanics;
+			RA_3_ID = get_releatedArticles.relatedArticle3Mechanics;
+			MoreStoriesIn = "Opto Mechanics ";
+		}
+		break;
+		
+		case "Astronomy":
+		{
+			RA_1_ID = get_releatedArticles.relatedArticle1Astronomy;
+			RA_2_ID = get_releatedArticles.relatedArticle2Astronomy;
+			RA_3_ID = get_releatedArticles.relatedArticle3Astronomy;
+			MoreStoriesIn = "Space & Astronomy";
+		}
+		break;
+		
+		case "Medical":
+		{
+			RA_1_ID = get_releatedArticles.relatedArticle1Medical;
+			RA_2_ID = get_releatedArticles.relatedArticle2Medical;
+			RA_3_ID = get_releatedArticles.relatedArticle3Medical;
+			MoreStoriesIn = "Medical Engineering";
+		}
+		break;
+		
+		case "Electronics":
+		{
+			RA_1_ID = get_releatedArticles.relatedArticle1Electronics;
+			RA_2_ID = get_releatedArticles.relatedArticle2Electronics;
+			RA_3_ID = get_releatedArticles.relatedArticle3Electronics;
+			MoreStoriesIn = "Electronics";
+		}
+		break;
+		
+		case "Research":
+		{
+			RA_1_ID = get_releatedArticles.relatedArticle1TechResearch;
+			RA_2_ID = get_releatedArticles.relatedArticle2TechResearch;
+			RA_3_ID = get_releatedArticles.relatedArticle3TechResearch;
+			MoreStoriesIn = "Electronics";
+		}
+		break;
+		
+		case "Aviation":
+		{
+			RA_1_ID = get_releatedArticles.relatedArticle1TechAviation;
+			RA_2_ID = get_releatedArticles.relatedArticle2TechAviation;
+			RA_3_ID = get_releatedArticles.relatedArticle3TechAviation;
+			MoreStoriesIn = "Electronics";
+		}
+		break;
+		
+		case "Displays":
+		{
+			RA_1_ID = get_releatedArticles.relatedArticle1TechDisplays;
+			RA_2_ID = get_releatedArticles.relatedArticle2TechDisplays;
+			RA_3_ID = get_releatedArticles.relatedArticle3TechDisplays;
+			MoreStoriesIn = "Displays";
+		}
+		break;
+		
+		case "Energy":
+		{
+			RA_1_ID = get_releatedArticles.relatedArticle1TechEnergy;
+			RA_2_ID = get_releatedArticles.relatedArticle2TechEnergy;
+			RA_3_ID = get_releatedArticles.relatedArticle3TechEnergy;
+			MoreStoriesIn = "Displays";
+		}
+		break;
+		
+		case "Solar":
+		{
+			RA_1_ID = get_releatedArticles.relatedArticle1Solar;
+			RA_2_ID = get_releatedArticles.relatedArticle2Solar;
+			RA_3_ID = get_releatedArticles.relatedArticle3Solar;
+			MoreStoriesIn = "Solar Energy";
+		}
+		break;
+		
+		case "Photography":
+		{
+			RA_1_ID = get_releatedArticles.relatedArticle1Photography;
+			RA_2_ID = get_releatedArticles.relatedArticle2Photography;
+			RA_3_ID = get_releatedArticles.relatedArticle3Photography;
+			MoreStoriesIn = "Photography";
+		}
+		break;
+		
+		case "Gadgets":
+		{
+			RA_1_ID = get_releatedArticles.relatedArticle1Gadgets;
+			RA_2_ID = get_releatedArticles.relatedArticle2Gadgets;
+			RA_3_ID = get_releatedArticles.relatedArticle3Gadgets;
+			MoreStoriesIn = "Gadgets";
+		}
+		break;
+		
+		case "Lifestyle":
+		{
+			RA_1_ID = get_releatedArticles.relatedArticle1Lifestyle;
+			RA_2_ID = get_releatedArticles.relatedArticle2Lifestyle;
+			RA_3_ID = get_releatedArticles.relatedArticle3Lifestyle;
+			MoreStoriesIn = "Lifestyle";
+		}
+		break;
+     }
+
+	Recommend_A_1_ID = get_releatedArticles.recommendArticle1;
+	Recommend_A_2_ID = get_releatedArticles.recommendArticle2;
+	
+
+	
+	var Releated_Article_1 = Umbraco.Content(RA_1_ID);
+	var Releated_Article_2 = Umbraco.Content(RA_2_ID);
+	var Releated_Article_3 = Umbraco.Content(RA_3_ID);
+	
+	var Recommend_Article_1 = Umbraco.Content(Recommend_A_1_ID);
+	var Recommend_Article_2 = Umbraco.Content(Recommend_A_2_ID);
+	
+		
+
+	<!-- *************************** -->
+	<div class="row">
+		<div class="col-xl-2 col-lg-2 col-md-2 .hidden-sm-down">
+		</div>
+		<div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-xs-12">
+			<div class="row">
+				<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<h5>More Stories in @MoreStoriesIn</h5>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xl-6 releated-articles-box">
+					<div class="releated-articles-box-1">
+						<img src="@Umbraco.Media(Releated_Article_1.articleImg).Url" class="releated-articles-img img-fluid" alt="@Releated_Article_1.photoAlt" />
+					</div>
+					<a href="@Releated_Article_1.Url"><h3>@Releated_Article_1.title</h3></a>
+				</div>
+				<div class="col-xl-6 releated-articles-box">
+					<div class="releated-articles-box-1">
+						<img src="@Umbraco.Media(Releated_Article_2.articleImg).Url" class="releated-articles-img img-fluid" alt="@Releated_Article_2.photoAlt" />
+					</div>
+					<a href="@Releated_Article_2.Url"><h3>@Releated_Article_2.title</h3></a>			 
+				</div>
+			</div>										
+		</div>
+		<div class="col-xl-2 col-lg-2 col-md-2 .hidden-sm-down">
+		</div>
+	</div>	
+	<!-- ***** -->
+		
+	<!-- Spacer -->
+	<div class="row">
+		<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 m-t-2">
+			<!-- spacer - m-t-2 -->			
+		</div>
+	</div>
+		
+	<div class="row">
+		<div class="col-xl-2 col-lg-2 col-md-2 .hidden-sm-down">
+		</div>
+		<div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-xs-12">
+			<div class="row">
+				<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				 	<h4 class="more_news_title">We recommend</h4>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xl-4 releated-articles-box">
+					<div class="releated-articles-box-1">
+						<img src="@Umbraco.Media(Releated_Article_3.articleImg).Url" class="news-img" alt="@Releated_Article_3.photoAlt" />
+					</div>
+					<a href="@Releated_Article_3.Url"><h3>@Releated_Article_3.title</h3></a>
+				</div>
+				<!-- *** We recommend *** -->		
+				<div class="col-xl-4 releated-articles-box">
+					<div class="releated-articles-box-1">
+						<img src="@Umbraco.Media(Recommend_Article_1.articleImg).Url" class="news-img" alt="@Recommend_Article_1.photoAlt" />
+					</div>
+					<a href="@Recommend_Article_1.url"><h3>@Recommend_Article_1.title</h3></a>
+				</div>
+				<div class="col-xl-4 releated-articles-box">
+					<div class="releated-articles-box-1">
+						<img src="@Umbraco.Media(Recommend_Article_2.articleImg).Url" class="news-img" alt="@Recommend_Article_2.photoAlt" />
+					</div>
+					<a href="@Recommend_Article_2.url"><h3>@Recommend_Article_2.title</h3></a>
+				</div>
+			</div>
+		</div>
+		<div class="col-xl-2 col-lg-2 col-md-2 .hidden-sm-down">
+		</div>
+	</div>
+	<!-- *************************** -->								    	                     			   								
+}
