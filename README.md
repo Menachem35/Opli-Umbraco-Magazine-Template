@@ -1,5 +1,5 @@
 # Opli-Umbraco-Magazine-Template
-Magazine template for Umbraco
+Magazine template for Umbraco 11
 
 This is a magzine template I developed for Umbraco. I developed it for a photonics and lasers magazine, http://www.opli.net , so therefore the categories names (variables, etc.). You can modify it for any other categories, etc. 
 

@@ -1,0 +1,66 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@{
+	Layout = "Layout.cshtml";
+}
+
+@section head
+{
+	<title>@Model.Value("generalPageTitle")</title>
+	<meta name="description" content="@Model.Value("metaDescription")" /> 
+    <meta name="keywords" content="@Model.Value("metaKeywords")" /> 
+
+	@Html.Partial("_SocialMetaTags")
+}
+
+	<div class="row">
+		<div class="col-xl-1 col-lg-1 col-md-1 hidden-sm-down">
+		</div>
+
+		<div class="col-xl-8 col-lg-8 col-md-9 col-sm-12 col-xs-12">
+			<h3 class="MainNewsTitle">@Model.Value("generalPageTitle")</h3>
+		</div>
+
+		<div class="col-xl-3 col-lg-3 col-md-2 hidden-sm-down">
+		</div>
+	</div>
+	<!-- ********** --->
+
+	<!-- Advertising -->
+	<div class="row">
+		<div class="col-xl-12">
+
+			<!-- ***** Google AdSense ****** -->
+			
+			<!-- ************** -->
+
+		</div>
+	</div>
+	<!-- *********** -->
+			
+	<!-- Article -->
+	<div class="row">
+		<div class="col-xl-1 col-lg-1 col-md-1 hidden-sm-down">
+		</div>
+																
+		<div class="col-xl-7 col-lg-7 col-md-9 col-sm-12 col-xs-12">
+			<article>
+				@Model.Value("generalPageText")
+			    @Model.Value("searchBox")
+			</article>
+			 
+  			<!-- Google search -->
+			
+		    <!-- *************** -->
+		</div>
+				
+			
+		<div class="col-xl-3 col-lg-3 col-md-2 hidden-sm-down" style="background-color:#F7F8FF; height: 1800px;">
+			Side bar
+		</div>
+		<!-- ********* -->	
+
+		<div class="col-xl-1 col-lg-1 hidden-md-down">
+		</div>
+	</div>
+	<!-- ******* -->
+	<!-- ****************************** -->

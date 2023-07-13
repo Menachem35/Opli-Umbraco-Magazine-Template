@@ -1,0 +1,246 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+    Layout = "Layout.cshtml";
+}
+
+@section head
+{
+	<title>@Model.Value("title")</title>
+	<meta name="description" content="@Model.Value("metaDescription")" />
+    <meta name="keywords" content="@Model.Value("metaKeywords")" />
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+	@Html.Partial("_SocialMetaTags")
+}
+
+
+	<!-- ************ -->
+
+	<div class="row">
+		<div class="col-xl-2 col-lg-2 col-md-2 hidden-sm-down">
+		</div>
+
+		<div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-xs-12">
+			<h3 class="MainNewsTitle">@Model.Value("title")</h3>
+			<h4>
+				@Model.Value("subTitle")
+			</h4>
+		</div>
+				
+		<div class="col-xl-2 col-lg-2 col-md-2 hidden-sm-down">
+		</div>
+	</div>
+			
+	<!-- Article img -->
+	<div class="row">
+		@await Umbraco.RenderMacroAsync("ArticleImgHandler")
+	</div>
+			
+	<div class="row">
+		<div class="col-xl-2 col-lg-2 col-md-2 hidden-sm-down">
+		</div>
+				
+		<div class="col-xl-9 col-lg-9 col-md-9 col-sm-12 col-xs-12" style="border-bottom: solid 1px grey; margin: 20px 100px 20px 0;">
+			<p class="img_txt">
+				@Model.Value("imgDescription")
+			</p>
+		</div>
+				
+		<div class="col-xl-1 col-lg-1 col-md-1 hidden-sm-down">
+		</div>
+				
+	</div>
+	<!-- ********** --->
+			
+	<!-- Advertising - upper banner news page -->
+	<div class="row">
+		<div class="col-xl-12">
+					
+		</div>
+	</div>
+	<!-- *********** -->
+			
+	<!-- Article -->
+	<div class="row">
+						
+		<!-- Social Buttons -->
+		<div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12" style="border-top: solid 1px black;">
+			SHARE:
+			<br /><br />
+			<div class="fb-like" data-href="@Model.Url(mode: UrlMode.Absolute)" data-width="" data-layout="box_count" data-action="like" data-size="small" data-share="true"></div>
+			<br /><br />
+			<script src="//platform.linkedin.com/in.js" type="text/javascript"></script>
+           	<script type="IN/Share" data-counter="right"></script>
+			<br /><br />
+			<a class="twitter-share-button" href="https://twitter.com/intent/tweet">
+				Tweet
+			</a>
+			 
+		</div>
+		<!-- ****** End Social Buttons ****** -->	
+				
+					
+		<div class="col-xl-6 col-lg-6 col-md-7 col-sm-12 col-xs-12">
+
+			<article>
+				@Model.Value("articleText")
+			</article>
+			
+			<!-- Advertising -->
+			<div class="newsPageBanner">
+				
+			</div>
+			<!-- ********** -->
+		</div>
+				
+		<!-- Side bar -->	
+		<div class="col-xl-3 col-lg-3 col-md-3 hidden-sm-down news-page-sidebar" id="NewsPageSidebar">
+			 
+			
+			<!-- Trending articles side bar -->
+		    @await Umbraco.RenderMacroAsync("Trending_Posts_SideBar")
+			<!-- **************** -->
+			
+							
+		</div>
+		<!-- ********* -->	
+						
+		<div class="col-xl-1 col-lg-1 hidden-md-down">
+		</div>
+			
+		<!-- Advertisers: show only on mobile, when sidebar is hidden -->
+		<div class="hidden-md-up col-sm-12 col-xs-12">			
+			
+		</div>
+		<!-- ******************************** -->
+	</div>
+	<!-- ******* -->
+			
+	<!-- Advertising / Related articles -->
+	<div class="row">
+		<div class="col-xl-2 col-lg-2 hidden-md-down">
+		</div>
+				
+		<div  class="col-xl-7 col-lg-7 col-md-12 col-sm-12 col-xs-12">
+			
+			<div class="row">
+				<div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12">
+					
+				</div>
+				<div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12">
+					<!-- *** Advertising *** -->
+					
+					
+			
+					<!-- ******* -->
+				</div>
+				<div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12">
+					
+				</div>
+			</div><!-- close row -->												
+			
+		</div>
+					
+		
+		<div class="col-xl-3 col-lg-3 hidden-md-down" >
+														
+		</div>
+	</div>
+					
+	<div class="row">
+		<div class="col-xl-2 col-lg-2 col-md-2 hidden-sm-down">
+		</div>
+					
+		<!-- *** Related articles *** -->	
+		<div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-xs-12">
+			<h5 class="related-posts-title">RELATED POSTS</h5> 
+			 
+		</div>
+				
+		<div class="col-xl-1 col-lg-1 col-md-1 hidden-sm-down">
+		</div>
+	</div>
+			
+	
+	@await Umbraco.RenderMacroAsync("Related_articles_opli_page")
+	
+	<!-- ****************************** -->
+			
+	<!-- ********* Comments *********** -->
+	<div class="row">
+		<div class="col-xl-2 col-lg-2 col-md-2 hidden-sm-down">
+		</div>
+		<div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-xs-12">			
+			
+		</div>
+		<div class="col-xl-2 col-lg-2 col-md-2 hidden-sm-down">
+		</div>
+	</div>
+	<!-- ****************************** -->
+			
+	<!-- More advertising -->		
+	<div class="row">
+		<div class="col-xl-2 col-lg-2 col-md-2 hidden-sm-down">
+		</div>
+				
+		<div class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-xs-12">
+			<div class="row">
+				<div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					
+
+				</div>
+				<div class="col-xl-6 hidden-lg-down">
+					<!-- Linkshare -->
+					 
+					<!-- ******* -->
+				</div>
+			</div><!-- close row -->
+		</div>
+					
+		<!-- *** Right Ad *** -->	
+		<div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
+			<div class="row">
+				<div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					
+				</div>
+				<div class="col-xl-6 hidden-lg-down">
+					<!-- *** Advertising *** -->
+					
+					<!-- ******************* -->
+				</div>
+			</div><!-- close row -->									
+		</div>
+				
+		<div class="col-xl-1 col-lg-1 col-md-1 hidden-sm-down">
+		</div>
+	</div>		
+	<!-- ****************************** -->
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+
+			$('.news-page-sidebar').filter (function() {
+			  if ($(this).css("margin-left")  == '10px' ){ // check if it's Extra large device, by the initial margin left property
+ 
+				// is Extra large device
+				var sideBarWidth = $('div#NewsPageSidebar').outerWidth();
+				
+				var ScreenWidth = $(window).width();
+				var SideBarWidth = 350;
+				
+				if (ScreenWidth < 1350) {SideBarWidth = 330}
+				if (ScreenWidth < 1300) {SideBarWidth = 320}
+				if (ScreenWidth < 1250) {SideBarWidth = 310}
+
+				var NewMargin = sideBarWidth - SideBarWidth;
+				$('div.news-page-sidebar').css('margin-left', NewMargin +'px');
+					$('div.news-page-sidebar').css('max-width', 350);
+				}								
+
+			});
+
+		});
+
+	</script>

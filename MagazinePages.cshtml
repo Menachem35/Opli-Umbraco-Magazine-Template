@@ -1,0 +1,42 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@{
+    Layout = "Layout.cshtml";
+}
+
+@section head 
+{
+	<title>@Model.Value("magazinePageTitle")</title>
+	<meta name="description" content="@Model.Value("metaPageDescription")" /> 
+    <meta name="keywords" content="@Model.Value("metaPageKeywords")" /> 
+}
+
+    <!-- FB Button -->
+  	<div id="fb-root"></div>
+  		<script>    (function (d, s, id) {
+	        var js, fjs = d.getElementsByTagName(s)[0];
+	        if (d.getElementById(id)) return;
+	        js = d.createElement(s); js.id = id;
+	        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+	        fjs.parentNode.insertBefore(js, fjs);
+	    } (document, 'script', 'facebook-jssdk'));
+  		</script>
+  	    <!-- Like Button -->
+			            
+		@await Umbraco.RenderMacroAsync("Archive_Magazine")             
+
+        <!-- Advertising -->
+		<div class="row">
+			<div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-12">
+			</div>
+				
+			<div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-12">
+				
+			</div>
+			<div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-12">
+				
+			</div>
+			
+			<div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-12">
+			</div>
+		</div>       										
+        <!-- End Ads & Recommended links-->

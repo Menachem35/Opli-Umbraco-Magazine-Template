@@ -1,0 +1,49 @@
+﻿@using Umbraco.Extensions
+@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@{
+    Layout = "Layout.cshtml";
+}
+
+@section head 
+{
+	<title>Opli: The Photonics Magazine</title>
+	 <meta name="description" content=@Model.Value("descriptionContent") />
+   <meta name="keywords" content=@Model.Value("descriptionKeywords") />
+}
+
+	<!-- Photonics & Physics -->
+  @await Umbraco.RenderMacroAsync("HP_Photonics_Lasers")
+	<!-- End Photonics & Physics -->
+		
+    <!-- Imaging & Machine Vision -->
+	@await Umbraco.RenderMacroAsync("HP_Imaging")
+    <!-- End Imaging & Meachine Vision -->
+   
+    <!-- Illumination -->
+    @await Umbraco.RenderMacroAsync("HP_LEDs")
+    <!-- End Illumination -->
+
+    <!-- Tech -->            
+   @await Umbraco.RenderMacroAsync("HP_Tech")
+    <!-- End Tech -->
+  
+    <!-- Solar Energy -->
+    @await Umbraco.RenderMacroAsync("HP_Solar")
+    <!-- End Solar Energy -->
+			
+	<!-- Astronomy -->
+   @await Umbraco.RenderMacroAsync("HP_Space")
+    <!-- Asrtronomy -->
+           
+    <!-- Photography -->
+   @await Umbraco.RenderMacroAsync("HP_Photography")
+    <!-- End Photography -->
+            
+    <!-- Gadgets -->
+    @await Umbraco.RenderMacroAsync("HP_Gadgets")
+    <!-- End Gadgets -->
+         
+    <!-- Life style -->
+    @await Umbraco.RenderMacroAsync("HP_Lifestyle")
+    <!-- End Life style -->

@@ -1,4 +1,7 @@
-@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Extensions
+
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
 @{
     Layout = null;
 }
@@ -7,37 +10,49 @@
 <html lang="en">
 <head>
 
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
 	
-  <link href='https://fonts.googleapis.com/css?family=Merriweather' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather' rel='stylesheet' type='text/css'>
 	
 	
-  @RenderSection("head", false)
+    @RenderSection("head", false)
 	
     
-  <link href="~/css/Style.css" rel="stylesheet">
+    <link href="~/css/Style.css" rel="stylesheet">
 	
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="~/css/bootstrap.min.css" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/css/bootstrap.min.css" />
 	
-	
-  <!-- google analytics -->
-    
-     <!-- End google analytics -->
+    <!-- google analytics -->
+    <script type="text/javascript">
 
-     <!-- Google Plus -->
-     
-     <!-- ****** -->
+     </script>
+     <!-- End google analytics -->
    
-	<!--- *********** Spot.IM ************* -->
-	
-	<!-- *********************************** -->
+    <!-- *** twitter *** -->
+	<script>window.twttr = (function(d, s, id) {
+  		var js, fjs = d.getElementsByTagName(s)[0],
+    		t = window.twttr || {};
+  		if (d.getElementById(id)) return t;
+  		js = d.createElement(s);
+  		js.id = id;
+  		js.src = "https://platform.twitter.com/widgets.js";
+  		fjs.parentNode.insertBefore(js, fjs);
+
+  		t._e = [];
+  		t.ready = function(f) {
+    		t._e.push(f);
+  		};
+
+  		return t;
+	}(document, "script", "twitter-wjs"));</script>	  
+	<!-- *************** -->
 		
 </head>
 <body>
-		
+
 	<!-- Main Container -->
 	<div class="container-fluid">
 		<header>
@@ -54,7 +69,7 @@
 
   
   	    <nav class="navbar navbar-full navbar-light bg-faded Opli-navigation" data-toggle="sticky-onscroll">        	
-       	    @Umbraco.RenderMacro("UpperNavigation")                    
+       	    @await Umbraco.RenderMacroAsync("UpperNavigation")                    
         </nav> 
   
         <section>
@@ -84,9 +99,9 @@
 							<br />
 							<a href="~/Advertising" class="news_link">Advertise</a>
 							<br />
-							<a href="~/Opli-old/submit_news.aspx" class="news_link">Submit News</a>
+							<a href="~/Opli-old/submit_news" class="news_link">Submit News</a>
 							<br />
-							<a href="~/Opli-old/opli2.aspx" class="news_link">Opli 2</a>
+							<a href="~/Opli-old/opli2" class="news_link">Opli 2</a>
 						</div>
 						
 						<div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-xs-12">
@@ -94,41 +109,41 @@
 
 							<a href="http://www.opli.net" class="news_link">All</a>
 							<br />
-							<a href="~/Photonics.aspx" class="news_link">Photonics</a>
+							<a href="~/Photonics" class="news_link">Photonics</a>
 							<br />
-							<a href="~/vision.aspx" class="news_link">Machine Vision</a>
+							<a href="~/vision" class="news_link">Machine Vision</a>
 							<br />
-							<a href="~/light.aspx" class="news_link">Illumination & LED's</a>
+							<a href="~/light" class="news_link">Illumination & LED's</a>
 							<br />
-							<a href="~/lasers.aspx" class="news_link">Lasers</a>
+							<a href="~/lasers" class="news_link">Lasers</a>
 							<br />
-							<a href="~/fibers.aspx" class="news_link">Optical Networks & Fibers</a>
+							<a href="~/fibers" class="news_link">Optical Networks & Fibers</a>
 							<br />
-							<a href="~/space.aspx" class="news_link">Astronomy</a>
+							<a href="~/space" class="news_link">Astronomy</a>
 							<br />
-							<a href="~/Observation.aspx" class="news_link">Observation & surveillance</a>
+							<a href="~/Observation" class="news_link">Observation & surveillance</a>
 							<br />
-							<a href="~/OptoMechanics.aspx" class="news_link">Optomechanics</a>
+							<a href="~/OptoMechanics" class="news_link">Optomechanics</a>
 							<br />
-							<a href="~/magazine/articles_mag.aspx" class="news_link">Articles</a>           
+							<a href="~/magazine/articles_mag" class="news_link">Articles</a>           
 							<br />
-							<a href="~/medical.aspx" class="news_link">Medical</a>
+							<a href="~/medical" class="news_link">Medical</a>
 							<br />
-							<a href="~/electronics.aspx" class="news_link">Electronics</a>
+							<a href="~/electronics" class="news_link">Electronics</a>
 							<br />
-							<a href="~/Solar.aspx" class="news_link">Solar</a>
+							<a href="~/Solar" class="news_link">Solar</a>
 							<br />
-							<a href="~/photography.aspx" class="news_link">Photography</a>
+							<a href="~/photography" class="news_link">Photography</a>
 							<br />
-							<a href="~/Gadgets.aspx" class="news_link">Gadgets</a>
+							<a href="~/Gadgets" class="news_link">Gadgets</a>
 							<br />
-							<a href="~/lifestyle.aspx" class="news_link">Lifestyle</a>
+							<a href="~/lifestyle" class="news_link">Lifestyle</a>
 						</div>
 						
 						<div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-xs-12">
 							<h5>Site</h5>
 
-							<a href="~/Opli-old/boards.aspx" class="news_link">Jobs</a>
+							<a href="~/Opli-old/boards" class="news_link">Jobs</a>
 							<br />
 							<a href="~/Opli-old/exhibitions.aspx" class="news_link">Events</a>
 						</div>
